@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../home/bottom_bar.dart';
-import '../../home/homepage.dart';
 import '../../utils/colors.dart';
 import '../../utils/widgets/app_textfield.dart';
 import '../../utils/widgets/page_indicator.dart';
@@ -32,11 +31,6 @@ class _VerifyPageState extends State<VerifyPage> {
     } else if (value.isEmpty && index > 0) {
       FocusScope.of(context).previousFocus(); // Move to the previous field
     }
-  }
-
-  void _submitOtp() {
-    String otp = otpController.map((controller) => controller.text).join('');
-    print('Entered OTP: $otp'); // Print the entered OTP
   }
 
   final _formKey = GlobalKey<FormState>();

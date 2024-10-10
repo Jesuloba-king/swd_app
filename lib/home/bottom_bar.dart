@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, deprecated_member_use
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -172,7 +173,9 @@ class GradientFloatingActionButton extends StatelessWidget {
             ).then((value) {
               if (value != null) {
                 // Handle the selected value here
-                print("Selected option: $value");
+                if (kDebugMode) {
+                  print("Selected option: $value");
+                }
               }
             });
           },

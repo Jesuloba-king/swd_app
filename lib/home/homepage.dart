@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             // Navigate to the settings page in the BottomNavBarPage
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => BottomNavBarPage(
+                              builder: (context) => const BottomNavBarPage(
                                   initialIndex: 4), // Settings page index
                             ));
                           },

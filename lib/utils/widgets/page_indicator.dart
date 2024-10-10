@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
-
 class PageIndicator extends StatelessWidget {
   final int currentPage;
   final int totalPages;

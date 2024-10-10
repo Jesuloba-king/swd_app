@@ -11,7 +11,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => UserModel()), // Provide UserModel
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
