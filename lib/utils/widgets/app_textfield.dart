@@ -1,8 +1,7 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../colors.dart';
 import 'app_button.dart';
@@ -369,7 +368,7 @@ class AcctNumber extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: Color(0xffEFA058),
-          content: const Text(
+          content: Text(
             'Copied to clipboard!',
             style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
           ),

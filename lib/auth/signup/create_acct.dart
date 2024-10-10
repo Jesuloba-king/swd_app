@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:swd_app/auth/signup/verify_acct.dart';
 
 import '../../utils/colors.dart';
@@ -8,6 +9,7 @@ import '../../utils/validators.dart';
 import '../../utils/widgets/app_textfield.dart';
 import '../../utils/widgets/page_indicator.dart';
 import '../login_screen.dart';
+import 'user_model.dart';
 // import 'package:flutter_svg/svg.dart';
 
 // @RoutePage()
@@ -56,14 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
               image: DecorationImage(
                   alignment: Alignment.topRight,
                   scale: 0.8,
-                  image: AssetImage('assets/image/light.png'))
-              // gradient: LinearGradient(
-              //   colors: [
-              //     Colors.black,
-              //     Colors.deepOrange.shade100,
-              //   ],
-              // ),
-              ),
+                  image: AssetImage('assets/image/light.png'))),
           child: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -81,7 +76,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                         child: const Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.arrow_back_ios_new,
                               color: Colors.white,
                             ),
@@ -350,6 +345,13 @@ class _SignUpPageState extends State<SignUpPage> {
                               lastController.text.isNotEmpty &&
                               _passwordController.text.isNotEmpty &&
                               phoneController.text.isNotEmpty) {
+                        // Save the name in the global state using Provider
+                        context
+                            .read<UserModel>()
+                            .setFirstName(firstController.text);
+                        context
+                            .read<UserModel>()
+                            .setLastName(lastController.text);
                         showDialog(
                           context: context,
                           barrierDismissible: false,

@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,14 +10,21 @@ import 'settings.dart';
 import 'statistics.dart';
 
 class BottomNavBarPage extends StatefulWidget {
-  const BottomNavBarPage({super.key});
+  const BottomNavBarPage({super.key, this.initialIndex = 0});
 
+  final int initialIndex;
   @override
   _BottomNavBarPageState createState() => _BottomNavBarPageState();
 }
 
 class _BottomNavBarPageState extends State<BottomNavBarPage> {
-  int _currentIndex = 0; // Current selected index
+  int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
 
   final List<Widget> _pages = [
     const HomePage(),
@@ -36,33 +43,57 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: GradientFloatingActionButton(),
+      floatingActionButton: const GradientFloatingActionButton(),
       body: _pages[_currentIndex], // Display the selected page
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            activeIcon: SvgPicture.asset(
+              'assets/image/House_01.svg',
+              color: Colors.white,
+            ),
+            icon: SvgPicture.asset(
+              'assets/image/House_01.svg',
+              color: const Color(0xff363636),
+            ),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.apps),
             label: 'Services',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.swap_vert),
+            activeIcon: SvgPicture.asset('assets/image/Arrow_Down_Up.svg',
+                color: Colors.white),
+            icon: SvgPicture.asset(
+              'assets/image/Arrow_Down_Up.svg',
+              color: const Color(0xff363636),
+            ),
             label: 'Statistics',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people_outline_outlined),
+            activeIcon: SvgPicture.asset(
+              'assets/image/refferral.svg',
+              color: Colors.white,
+            ),
+            icon: SvgPicture.asset(
+              'assets/image/refferral.svg',
+              color: const Color(0xff363636),
+            ),
             label: 'Referral',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
+            activeIcon: SvgPicture.asset('assets/image/Settings.svg',
+                color: Colors.white),
+            icon: SvgPicture.asset(
+              'assets/image/Settings.svg',
+              color: const Color(0xff363636),
+            ),
             label: 'Settings',
           ),
         ],
         currentIndex: _currentIndex,
-        selectedLabelStyle: TextStyle(
+        selectedLabelStyle: const TextStyle(
           // fontSize: 12,
           fontWeight: FontWeight.w300,
         ),
@@ -79,6 +110,8 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
 // Sample screens for each tab
 
 class GradientFloatingActionButton extends StatelessWidget {
+  const GradientFloatingActionButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -101,7 +134,47 @@ class GradientFloatingActionButton extends StatelessWidget {
         ),
         FloatingActionButton(
           onPressed: () {
-            // Define your action here
+            showMenu(
+              context: context,
+              position: const RelativeRect.fromLTRB(100, 0, 0, 0),
+              items: [
+                const PopupMenuItem<String>(
+                  value: 'call',
+                  child: Row(
+                    children: [
+                      Icon(Icons.phone),
+                      SizedBox(width: 8),
+                      Text('Call Support'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'sms',
+                  child: Row(
+                    children: [
+                      Icon(Icons.message),
+                      SizedBox(width: 8),
+                      Text('SMS Support'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'email',
+                  child: Row(
+                    children: [
+                      Icon(Icons.email),
+                      SizedBox(width: 8),
+                      Text('Email Support'),
+                    ],
+                  ),
+                ),
+              ],
+            ).then((value) {
+              if (value != null) {
+                // Handle the selected value here
+                print("Selected option: $value");
+              }
+            });
           },
           backgroundColor: Colors.transparent, // Make background transparent
           elevation: 0, // Remove shadow

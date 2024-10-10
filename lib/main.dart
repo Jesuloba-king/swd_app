@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
 import 'auth/login_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'auth/signup/user_model.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserModel()), // Provide UserModel
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

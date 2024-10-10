@@ -1,8 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:swd_app/home/bottom_bar.dart';
-// import 'package:flutter_svg/svg.dart';
-import '../home/homepage.dart';
 import '../utils/colors.dart';
 import '../utils/validators.dart';
 import '../utils/widgets/app_textfield.dart';
@@ -118,13 +116,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   AppTextField(
                     labelText: 'Enter Email',
                     textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) => EmailValidator.validateEmail(value!),
                   ),
 
                   const SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
 
                   const Text(
@@ -144,6 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: _passwordController,
                     obscureText: _isObscure,
                     keyboardType: TextInputType.text,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     textInputAction: TextInputAction.done,
                     validator: (value) =>
                         PasswordValidator.validatePassword(value!),

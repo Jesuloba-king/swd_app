@@ -5,7 +5,7 @@ const String invalidEmailField =
     "Email provided isn't valid.Try another email address";
 const String passwordLengthError = 'Password length must be greater than 8';
 const String invalidPassword =
-    'Password must contain at least character\nand a number';
+    'Password must contain at least a character\nand a number';
 const String invalidPhoneNumberField =
     "Number provided isn't valid.Try another phone number";
 const String invalidOTPField = "OTP should contain 6 digits";
