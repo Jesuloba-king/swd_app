@@ -4,6 +4,7 @@ import 'auth/login_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'auth/signup/user_model.dart';
+import 'splash/splash_screen.dart';
 
 void main() {
   runApp(
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: "Aeonik"),
       debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
+      home: const SplashScreenPage(),
     );
   }
 }
